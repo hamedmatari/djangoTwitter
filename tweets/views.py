@@ -33,3 +33,12 @@ def create_tweet(request):
         return JsonResponse(
             {"success": False, "error": "Invalid request method."}, status=405
         )
+
+
+def feed_list(request):
+    tweets = Tweet.objects.filter(author__in=request.user.following.all())
+    tweet_data = [
+        {"id": tweet.id, "content": tweet.content, "author": tweet.author.username}
+        for tweet in tweets
+    ]
+    return JsonResponse({"tweets": tweet_data})
