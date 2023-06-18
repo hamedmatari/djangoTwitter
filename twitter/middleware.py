@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.core.cache import cache
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 
 def simple_middleware(get_response):
@@ -15,7 +16,8 @@ def simple_middleware(get_response):
         if "auth" in request.headers:
             username = cache.get(request.headers["auth"])
             if username is not None:
-                request.user = username
+                user = User.objects.get(username=username)
+                request.user = user
                 response = get_response(request)
                 return response
 
