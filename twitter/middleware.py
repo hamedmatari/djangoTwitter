@@ -4,9 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 
 
-def simple_middleware(get_response):
-    # One-time configuration and initialization.
-
+def auth_middleware(get_response):
     def middleware(request):
         if request.path_info.startswith("/login/"):
             response = get_response(request)

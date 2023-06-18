@@ -48,7 +48,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "twitter.middleware.simple_middleware",
+    "twitter.middleware.auth_middleware",
 ]
 
 ROOT_URLCONF = "twitter.urls"
