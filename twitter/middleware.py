@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 
 def auth_middleware(get_response):
     def middleware(request):
-        if request.path_info.startswith("/login/"):
+        white_list = ["/login/", "/register/", "/admin/"]
+        if request.path_info in white_list:
             response = get_response(request)
             return response
 

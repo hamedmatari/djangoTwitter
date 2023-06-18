@@ -4,7 +4,6 @@ from .models import Tweet
 from django.contrib.auth.models import User
 
 
-# @login_required
 def tweet_list(request):
     tweets = Tweet.objects.all()
     tweet_data = [
@@ -14,7 +13,6 @@ def tweet_list(request):
     return JsonResponse({"tweets": tweet_data})
 
 
-@login_required
 def create_tweet(request):
     if request.method == "POST":
         content = request.POST.get("content")
