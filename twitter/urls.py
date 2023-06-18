@@ -7,4 +7,5 @@ urlpatterns = [
     path("login/", login_view),
     path("logout/", logout_view),
     path("tweets/", include("tweets.urls")),
+    path("account/", include("account.urls")),
 ]

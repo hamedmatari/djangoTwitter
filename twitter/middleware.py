@@ -1,7 +1,9 @@
 from django.core.exceptions import PermissionDenied
 from django.core.cache import cache
 from django.contrib.auth import login
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def auth_middleware(get_response):
