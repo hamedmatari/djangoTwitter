@@ -22,4 +22,6 @@ def create_tweet(request):
         else:
             return JsonResponse({"success": False, "error": "Content is required."})
     else:
-        return JsonResponse({"success": False, "error": "Invalid request method."})
+        return JsonResponse(
+            {"success": False, "error": "Invalid request method."}, status=405
+        )
