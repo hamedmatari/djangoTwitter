@@ -1,11 +1,18 @@
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Tweet
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-def tweet_list(request):
-    tweets = Tweet.objects.all()
+def tweet_list(request, username=None):
+    if username is None:
+        tweets = Tweet.objects.filter(author=request.user)
+    else:
+        user = User.objects.get(username=username)
+        tweets = Tweet.objects.filter(author=user)
+
     tweet_data = [
         {"id": tweet.id, "content": tweet.content, "author": tweet.author.username}
         for tweet in tweets
