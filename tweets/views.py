@@ -6,7 +6,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-def tweet_list(request, username=None):
+def tweet_list(request):
+    username = request.GET.get("username")
     if username is None:
         tweets = Tweet.objects.filter(author=request.user)
     else:
