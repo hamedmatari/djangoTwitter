@@ -6,10 +6,12 @@ from django.contrib.auth.models import User
 
 def auth_middleware(get_response):
     def middleware(request):
-        white_list = ["/login/", "/register/", "/admin/"]
-        if request.path_info in white_list:
-            response = get_response(request)
-            return response
+        white_list = ["/login", "/register", "/admin"]
+
+        for path in white_list:
+            if request.path_info.startswith(path):
+                response = get_response(request)
+                return response
 
         # if "auth" in request.headers and request.headers["auth"] == "manHamedHastam":
         if "auth" in request.headers:
