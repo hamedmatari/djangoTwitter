@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from django.core.cache import cache
-from django.views.decorators.csrf import csrf_exempt
 
 
 def login_view(request):
